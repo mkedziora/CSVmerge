@@ -15,7 +15,8 @@ namespace merge
             var firstFileArray  = SingleToDoubleDimension(HeaderCounter(firstPath), firstFile.ToArray());
             var updateFileArray = SingleToDoubleDimension(HeaderCounter(updatePath), updateFile.ToArray());
             var mergedArray = MergeArrays(firstFileArray, updateFileArray);
-            var finalString = ArrayToString(mergedArray);
+            var updatedArray = UpdateArray(mergedArray, firstFileArray, updateFileArray);
+            var finalString = ArrayToString(updatedArray);
             File.WriteAllText(@"C:\Repos\CSVmerge\output.csv", finalString);
         }
 
@@ -119,11 +120,75 @@ namespace merge
             }
             for (int i = 1; i < array2.GetLength(0); i++)
             {
-                for (int j = 0; j < counter; j++)
+                int j = 0;
+                int k = 0;
+                while(j < array2.GetLength(1) - z)
                 {
-                    newArray[i + array1.GetLength(0) - 1, j] = array2[i, j];
+                    if (array2[0, j] == newArray[0, k])
+                    {
+                        newArray[i + array1.GetLength(0) - 1, k] = array2[i, j];
+                        j++;
+                        k++;
+                    }
+                    else
+                    {
+                        k++;
+                    }
                 }
             }
+            return newArray;
+        }
+
+        private static string[,] UpdateArray(string[,] mergedArray, string[,] array1, string[,] array2)
+        {
+            var updateCounter = 0;
+            var updateDict = new Dictionary<int,int>();
+            for (int i = 1; i < array1.GetLength(0); i++)
+            {
+                for (int j = 1; j < array2.GetLength(0); j++)
+                {
+                    if (mergedArray[i, 0] == array2[j, 0] && mergedArray[i, 1] == array2[j, 1])
+                    {
+                        updateCounter++;
+                        updateDict.Add(i, j + array1.GetLength(0) - 1 );
+                    }
+                }
+            }
+            string[,] newArray = new String[mergedArray.GetLength(0) - updateCounter, mergedArray.GetLength(1)];
+
+            for (int i = 0; i < newArray.GetLength(1); i++)
+            {
+                newArray[0, i] = mergedArray[0, i];
+            }
+
+            int k = 1;
+            for (int i = 1; i < mergedArray.GetLength(0); i++)
+            {
+                if (updateDict.ContainsKey(i))
+                {
+                    for (int j = 0; j < mergedArray.GetLength(1); j++)
+                    {
+                        if (mergedArray[updateDict[i], j] == null)
+                        {
+                            newArray[k, j] = mergedArray[i, j];
+                        }
+                        else
+                        {
+                            newArray[k, j] = mergedArray[updateDict[i], j];
+                        }
+                    }
+                    k++;
+                }
+                else if (!updateDict.ContainsKey(i) && !updateDict.ContainsValue(i))
+                {
+                    for (int j = 0; j < mergedArray.GetLength(1); j++)
+                    {
+                        newArray[k, j] = mergedArray[i, j];
+                    }
+                    k++;
+                }
+            }
+
             return newArray;
         }
 
@@ -143,7 +208,7 @@ namespace merge
                         finalString = finalString + "" + ",";
                     }
                 }
-                finalString = finalString.TrimEnd(',');
+                finalString = finalString.Remove(finalString.Length - 1);
                 finalString = finalString + Environment.NewLine;
             }
             return finalString;
