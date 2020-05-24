@@ -1,0 +1,13 @@
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.exe
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.deps.json
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.runtimeconfig.json
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.runtimeconfig.dev.json
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.dll
+C:\Repos\CSVmerge\merge\merge\bin\Debug\netcoreapp3.1\merge.pdb
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.csprojAssemblyReference.cache
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.AssemblyInfoInputs.cache
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.AssemblyInfo.cs
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.csproj.CoreCompileInputs.cache
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.dll
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.pdb
+C:\Repos\CSVmerge\merge\merge\obj\Debug\netcoreapp3.1\merge.genruntimeconfig.cache
